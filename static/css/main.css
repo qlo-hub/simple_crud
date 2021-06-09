@@ -1,0 +1,14 @@
+body {
+    background-image: url("/static/images/bg.jfif");
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+table {
+    size: 50%;
+}
+.card-header{
+   background-color: #292a2b;
+}
+.card-body{
+    background-color: #484a4d;
+}

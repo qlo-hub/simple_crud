@@ -1,0 +1,78 @@
+{% extends 'books/main.html' %} {% load static %} {% block content %}
+<div class="container">
+  <h1>Authors</h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col"><i class="fas fa-user"></i> First Name</th>
+        <th scope="col"><i class="fas fa-user"></i> Last Name</th>
+        <th scope="col"><i class="fas fa-flag"></i> Country of Origin</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for author in authors %}
+      <tr>
+        <td>{{author.first_name}}</td>
+        <td>{{author.last_name}}</td>
+        <td>{{author.country}}</td>
+        <td>
+          <a
+            href="{% url 'update_authors' author.id %}"
+            class="btn btn-sm btn-outline-warning"
+            ><i class="fas fa-edit"></i> Update</a
+          >
+        </td>
+        <td>
+          <button
+            class="btn btn-sm btn-outline-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#delete_author_{{author.id}}"
+          >
+            <i class="fas fa-trash"></i> Delete
+          </button>
+
+          <div class="modal fade" id="delete_author_{{author.id}}">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body" style="color: black">
+                  Are you sure you want to delete {{author.first_name}}
+                  {{author.last_name}}?
+                </div>
+                <div class="modal-footer">
+                  <a
+                    href="{% url 'delete_authors' author.id %}"
+                    class="btn btn-outline-warning"
+                    ><i class="fas fa-trash"></i> Delete</a
+                  >
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    data-bs-dismiss="modal"
+                  >
+                    <i class="fas fa-ban"></i> Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col">
+      <a href="{% url 'add_authors' %}" class="btn btn-sm btn-success"
+        ><i class="fas fa-plus"></i> Add Authors</a
+      >
+      <a
+        href="{% url 'books' %}"
+        class="btn btn-sm btn-info"
+        style="color: white"
+        ><i class="fas fa-eye"></i> View Books</a
+      >
+    </div>
+  </div>
+</div>
+{% endblock %}

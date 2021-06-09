@@ -1,0 +1,22 @@
+{% extends 'books/main.html' %} {% load static %} {% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+  <form action="" method="POST" class="form">
+    <div class="card">
+      <div class="card-header">Add Books</div>
+      <div class="card-body">{% csrf_token %} {{form|crispy}}</div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-sm btn-success" type="submit">
+          <i class="fas fa-plus"></i> Add Book
+        </button>
+        <a href="{% url 'books' %}" class="btn btn-sm btn-danger"
+          ><i class="fas fa-ban"></i> Cancel</a
+        >
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
